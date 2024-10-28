@@ -25,17 +25,15 @@ Une application de contrôle parental avancée pour la sécurité numérique des
 
 Clonez le dépôt :
 
-```bash
-git clone https://github.com/diablo200k/SafeNet.git
- ## Installez les dépendances :
 
-bash
-Copier le code
+git clone https://github.com/diablo200k/SafeNet.git
+## Installez les dépendances :
+
+
 pip install -r requirements.txt
 Exécutez le script de configuration :
 
-bash
-Copier le code
+
 python setup_autostart.py
 ⚙️ Configuration
 Vérifiez la configuration du fichier app.py :
@@ -56,18 +54,12 @@ Forkez le projet.
 
 Créez une branche pour votre fonctionnalité :
 
-bash
-Copier le code
 git checkout -b feature/NouvelleFonctionnalite
 Committez vos changements :
 
-bash
-Copier le code
 git commit -m 'Ajout d'une nouvelle fonctionnalité'
 Poussez vers la branche :
 
-bash
-Copier le code
 git push origin feature/NouvelleFonctionnalite
 Ouvrez une Pull Request.
 
