@@ -44,10 +44,10 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
 Personnalisez les paramètres dans config.ini selon vos besoins.
 
-📖 Utilisation
+## 📖 Utilisation
 SafeNet démarrera automatiquement à chaque démarrage de Windows. Accédez à l'interface de contrôle via votre navigateur web à l’adresse : http://localhost:5000.
 
-🤝 Contribution
+## 🤝 Contribution
 Les contributions sont les bienvenues ! Pour contribuer :
 
 Forkez le projet.
@@ -63,19 +63,15 @@ Poussez vers la branche :
 git push origin feature/NouvelleFonctionnalite
 Ouvrez une Pull Request.
 
-📝 Licence
+## 📝 Licence
 Ce projet est sous licence MIT. Consultez le fichier LICENSE pour plus de détails.
 
-📬 Contact
+## 📬 Contact
 Auteur : Diablo200k - @diablo200k
 Lien du projet : SafeNet sur GitHub
 
-⚠️ Avertissement
+## ⚠️ Avertissement
 SafeNet est conçu comme un outil de soutien pour la parentalité numérique. Il ne remplace pas la supervision parentale directe ni le dialogue avec les enfants sur l'utilisation responsable d'Internet et des appareils numériques.
 
-🌟 Merci d'avoir consulté SafeNet !
+## 🌟 Merci d'avoir consulté SafeNet !
 
-perl
-Copier le code
-
-Ce format est prêt à être collé directement dans le fichier `README.md`.
