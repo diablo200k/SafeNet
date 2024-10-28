@@ -27,7 +27,7 @@ Clonez le dépôt :
 
 ```bash
 git clone https://github.com/diablo200k/SafeNet.git
-Installez les dépendances :
+ ## Installez les dépendances :
 
 bash
 Copier le code
