@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeNet Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-blue-600 mb-4">SafeNet Dashboard</h1>
+            <nav>
+                <!-- Add navigation items here -->
+            </nav>
+        </header>
+        
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <section class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-2xl font-semibold mb-4">Connected Devices</h2>
+                {% if devices %}
+                    <ul class="space-y-4">
+                        {% for device in devices %}
+                        <li class="border-b pb-4">
+                            <h3 class="text-lg font-medium">{{ device.name }}</h3>
+                            <p>Type: {{ device.type }}</p>
+                            <p>Status: <span class="{% if device.status == 'online' %}text-green-500{% else %}text-red-500{% endif %}">{{ device.status }}</span></p>
+                            <p>Screen Time: {{ device.screen_time|default(0) }} minutes</p>
+                            <button onclick="blockDevice('{{ device._id }}')" class="mt-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Block Device</button>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No devices connected.</p>
+                {% endif %}
+            </section>
+            
+            <section class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-2xl font-semibold mb-4">Activity Summary</h2>
+                {% if activities %}
+                    <ul class="space-y-2">
+                        {% for activity, percentage in activities.items() %}
+                        <li class="flex justify-between">
+                            <span>{{ activity }}</span>
+                            <span class="font-semibold">{{ percentage }}%</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No activity data available.</p>
+                {% endif %}
+            </section>
+            
+            <section class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-2xl font-semibold mb-4">Recent Alerts</h2>
+                {% if alerts %}
+                    <ul class="space-y-4">
+                        {% for alert in alerts %}
+                        <li class="p-4 rounded {% if alert.type == 'warning' %}bg-yellow-100{% else %}bg-blue-100{% endif %}">
+                            <p class="font-medium">{{ alert.message }}</p>
+                            <small class="text-gray-500">{{ alert.time }}</small>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No recent alerts.</p>
+                {% endif %}
+            </section>
+            
+            <section class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-2xl font-semibold mb-4">Quick Controls</h2>
+                <div class="space-x-4">
+                    <button onclick="blockAllDevices()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Block All Devices</button>
+                    <button onclick="extendScreenTime()" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Extend Screen Time</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function blockDevice(deviceId) {
+            fetch(`/api/block_device/${deviceId}`)
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    if (data.success) {
+                        location.reload();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function blockAllDevices() {
+            fetch('/api/block_all_devices')
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    if (data.success) {
+                        location.reload();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function extendScreenTime() {
+            fetch('/api/extend_screen_time')
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    if (data.success) {
+                        location.reload();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
