@@ -3,42 +3,34 @@ package main
 import (
 	"fmt"
 	"log"
+	"time"
+
 	"github.com/gorilla/websocket"
-	"os"
 )
 
-func connectToServer() {
-	serverURL := "ws://localhost:8080/ws"
-	fmt.Printf("Connexion au serveur WebSocket à %s...\n", serverURL)
-
-	// Se connecter au serveur WebSocket
-	conn, _, err := websocket.DefaultDialer.Dial(serverURL, nil)
+func main() {
+	// Connect to the WebSocket server
+	conn, _, err := websocket.DefaultDialer.Dial("ws://localhost:8080/ws", nil)
 	if err != nil {
-		log.Fatalf("Erreur de connexion: %v\n", err)
-		os.Exit(1)
+		log.Fatal("Error connecting to server:", err)
 	}
 	defer conn.Close()
 
-	fmt.Println("Connecté au serveur WebSocket")
+	for {
+		// Example of sending a message to the server
+		err := conn.WriteMessage(websocket.TextMessage, []byte("Hello Server!"))
+		if err != nil {
+			log.Println("Error sending message:", err)
+			return
+		}
+		time.Sleep(1 * time.Second)
 
-	// Envoyer un message initial
-	message := "Hello, serveur WebSocket!"
-	err = conn.WriteMessage(websocket.TextMessage, []byte(message))
-	if err != nil {
-		log.Println("Erreur lors de l'envoi du message:", err)
-		return
+		// Read messages from the server
+		_, msg, err := conn.ReadMessage()
+		if err != nil {
+			log.Println("Error reading message:", err)
+			return
+		}
+		fmt.Printf("Received from server: %s\n", msg)
 	}
-
-	// Lire la réponse du serveur
-	_, response, err := conn.ReadMessage()
-	if err != nil {
-		log.Println("Erreur lors de la lecture du message:", err)
-		return
-	}
-	fmt.Printf("Réponse du serveur: %s\n", response)
-}
-
-func main() {
-	// Se connecter au serveur WebSocket
-	connectToServer()
 }

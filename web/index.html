@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeNet Dashboard</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <h1>Welcome to SafeNet</h1>
+    
+    <div id="action-panel">
+        <h2>Actions</h2>
+        <button onclick="startAudit()">Start Audit</button>
+        <button id="view-audit-results" onclick="downloadAudit()">View Audit Results</button> <!-- Updated button -->
+        <button onclick="sendCustomCommand()">Send Command</button>
+    </div>
+
+    <div id="audit-results"></div>
+
+    <script src="static/main.js"></script>
+</body>
+</html>
