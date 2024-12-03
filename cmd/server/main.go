@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
 	"github.com/gorilla/websocket"
-	"os"
 )
 
 var upgrader = websocket.Upgrader{
