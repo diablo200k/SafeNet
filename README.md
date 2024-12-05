@@ -1,6 +1,6 @@
 # SafeNet
 
-Une application de contrôle parental avancée pour la sécurité numérique des enfants.
+Une application permet de réaliser un audit complet de votre système informatique, générant un rapport PDF détaillés.
 
 ---
 
